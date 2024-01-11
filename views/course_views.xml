@@ -1,5 +1,64 @@
 <odoo>
   <data>
+    <!-- custom.school tree view -->
+    <record id="custom_school_view_tree" model="ir.ui.view">
+      <field name="name">custom.school.view.tree</field>
+      <field name="model">custom.school</field>
+      <field name="arch" type="xml">
+        <tree>
+          <!-- Add your fields here -->
+          <field name="name"/>
+          <field name="description"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- custom_school search view -->
+    <record id="custom.school_view_search" model="ir.ui.view">
+      <field name="name">custom.school.view.search</field>
+      <field name="model">custom.school</field>
+      <field name="arch" type="xml">
+        <search string="Search Course">
+          <!-- Add your fields here -->
+          <field name="name"/>
+          <field name="description"/>
+
+          <field name="python" string="Python" domain="[('name','ilike','python')]"/>
+          <field name="odoo" string="Odoo" domain="[('name','ilike','odoo')]"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- custom.school form view -->
+    <record id="custom_school_view_form" model="ir.ui.view">
+      <field name="name">custom.school.view.form</field>
+      <field name="model">custom.school</field>
+      <field name="arch" type="xml">
+        <form string="">
+          <sheet>
+            <group>
+              <!-- Add your fields here -->
+              <group>
+                <field name="name"/>
+              </group>
+
+              <group>
+                <field name="active"/>
+              </group>
+
+              <notebook>
+                <page string="Description" name="description">
+                    <field name="description"/>
+                </page>
+              </notebook>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
     <!-- custom.school action window -->
     <record id="custom_school_action" model="ir.actions.act_window">
       <field name="name">Course</field>
