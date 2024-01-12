@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+  <!-- res.partner inherit form view -->
+  <record id="res.partner" model="ir.ui.view">
+    <field name="name">inherit_res_partner_form</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_res_partner_form"/>
+    <field name="arch" type="xml">
+        <!-- Add your xpath here -->
+        <field name="vat" 
+        position="after">
+          <field name="is_teacher"/>
+          <field name="is_student"/>
+        </field>
+    </field>
+  </record>
+
+  <!-- res.partner action window -->
+  <record id="student_action_window" model="ir.actions.act_window">
+    <field name="name">Student</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_type">form</field>
+    <!-- <field name="domain">[]</field>
+    <field name="context">{}</field>
+    <field name="target">{current}</field> -->
+  </record>
+
+  <!-- This Menu Item must have a parent and an action -->
+  <menuitem id="student_menu_act" name="Student" parent="custom_school_master_menu_categ" action="student_action_window" sequence="30"/>
+  </data>
+</odoo>
