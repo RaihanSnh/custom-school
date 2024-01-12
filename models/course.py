@@ -18,3 +18,10 @@ class Course(models.Model):
         string='Active',
         default=True
     )
+
+    category_id = fields.Many2one(
+        comodel_name='custom.school.category',
+        string='Category', 
+        #required=True 
+    )
+    

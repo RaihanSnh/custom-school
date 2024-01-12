@@ -26,10 +26,11 @@ First Custom Module
         'views/menu.xml'
         'views/course_views.xml',
         'views/templates.xml',
+        'views/course_category_views.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
-        'demo/demo.xml',
+        # 'demo/demo.xml',
     ],
 }
 
