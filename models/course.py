@@ -1,7 +1,7 @@
 from odoo import fields, models
 
 class Course(models.Model):
-    _name = 'custom_school'
+    _name = 'custom.school.course'
     _description = 'Data Course'
 
     name = fields.Char(

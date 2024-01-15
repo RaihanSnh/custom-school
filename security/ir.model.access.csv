@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_custom_school_course,access_custom_school_course,model_custom_school,base.group_user,1,1,1,1
-access_custom_school_category_course,access_custom_school_category_course,model_custom_school_category,base.group_user,1,1,1,1
+access_custom_school_course,access_custom_school_course,model_custom_school_course,,1,1,1,1
+access_custom_school_course_category,access_custom_school_course_category,model_custom_school_course_category,,1,1,1,1
+access_custom_school_session,access_custom_school_session,model_custom_school_session,,1,1,1,1
+access_custom_school_participant,access_custom_school_participant,model_custom_school_participant,,1,1,1,1
