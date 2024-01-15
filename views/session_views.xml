@@ -12,6 +12,7 @@
                 <field name="teacher_id"/>
                 <field name="session_date"/>
                 <field name="min_participant"/>
+                <field name="taken_seats" widgets="progressbar"/>
             </tree>
         </field>
     </record>
@@ -24,13 +25,16 @@
             <form string="">
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="course_id"/>
-                        <field name="teacher_id"/>
-                    </group>
-                    <group>
-                        <field name="session_date"/>
-                        <field name="min_participant"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="course_id"/>
+                            <field name="teacher_id"/>
+                        </group>
+                        <group>
+                            <field name="session_date"/>
+                            <field name="min_participant"/>
+                            <field name="taken_seats" widgets="progressbar"/>
+                        </group>
                     </group>
                     <notebook>
                         <page name="participant" string="Participant">

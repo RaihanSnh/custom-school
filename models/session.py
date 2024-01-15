@@ -15,6 +15,17 @@ class Session(models.Model):
 
     participant_ids = fields.One2many(comodel_name='custom.school.participant', inverse_name='session_id', string='Participant')
 
+    taken_seats = fields.Float(compute='_compute_taken_seats', string='Taken Seats', store=True)
+    
+    @api.depends('min_participant', 'participant_ids')
+    def _compute_taken_seats(self):
+        for record in self:
+            if record.min_participant:
+              record.taken_seats = 0.0
+            else:
+                record.taken_seats = 100.0 * len(record.participant_ids) / record.min_participant
+
+
 class Participant(models.Model):
     _name = 'custom.school.articipant'
     _description = 'Participant of Course Session..'
@@ -22,7 +33,7 @@ class Participant(models.Model):
     name = fields.Char(string='Registration Number')
     student_id = fields.Many2one(
         comodel_name='model.name',
-        domain="[('is_student' '=', True)]"
+        domain="[('is_student' '=', True)]",
         string='Student',
     )
 
@@ -31,7 +42,3 @@ class Participant(models.Model):
     session_id = fields.Many2one(comodel_name='custom.school.session', string='Session')
 
     remark = fields.Char(string='Remarks')
-    
-
-    
-    
