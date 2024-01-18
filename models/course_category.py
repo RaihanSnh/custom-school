@@ -1,7 +1,7 @@
 from odoo import fields, models
 
 class Course(models.Model):
-    _name = 'custom.school.category'
+    _name = 'custom.school.course.category'
     _description = 'Data Course Category'
 
     name = fields.Char(
@@ -19,9 +19,9 @@ class Course(models.Model):
         default=True
     )
 
-    category_ids = fields.Many2one(
+    course_ids = fields.One2many(
         string='Course',
-        comodel_name='custom.school',
+        comodel_name='custom.school.course',
         inverse_name='category_id'
     )
     

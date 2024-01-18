@@ -23,7 +23,7 @@ First Custom Module
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml'
+        'views/menu.xml',
         'views/course_views.xml',
         'views/templates.xml',
         'views/course_category_views.xml',

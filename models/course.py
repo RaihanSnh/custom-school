@@ -20,8 +20,8 @@ class Course(models.Model):
     )
 
     category_id = fields.Many2one(
-        comodel_name='custom.school.category',
+        comodel_name='custom.school.course.category',
         string='Category', 
-        #required=True 
+        required=True 
     )
     

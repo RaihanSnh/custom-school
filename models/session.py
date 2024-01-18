@@ -20,14 +20,14 @@ class Session(models.Model):
     @api.depends('min_participant', 'participant_ids')
     def _compute_taken_seats(self):
         for record in self:
-            if record.min_participant:
-              record.taken_seats = 0.0
+            if not record.min_participant:
+               record.taken_seats = 0.0
             else:
                 record.taken_seats = 100.0 * len(record.participant_ids) / record.min_participant
 
 
     @api.onchange('min_participant', 'participant_ids')
-    def _onchange_min_participant(self):
+    def _onchange_participant(self):
         if self.min_participant < 0:
             return {
                 'warning': {
@@ -45,14 +45,14 @@ class Session(models.Model):
 
 
 class Participant(models.Model):
-    _name = 'custom.school.articipant'
+    _name = 'custom.school.participant'
     _description = 'Participant of Course Session..'
 
     name = fields.Char(string='Registration Number')
     student_id = fields.Many2one(
-        comodel_name='model.name',
-        domain="[('is_student' '=', True)]",
-        string='Student',
+        comodel_name='res.partner',
+        domain="[('is_student', '=', True)]",
+        string='Student'
     )
 
     reg_date = fields.Datetime(string='Reg Date', default=fields.Datetime.now())

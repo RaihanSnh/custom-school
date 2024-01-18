@@ -12,4 +12,3 @@ class  Partner(models.Model):
         string='Teacher',
         default=False
     )
-    

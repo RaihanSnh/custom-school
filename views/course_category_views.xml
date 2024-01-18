@@ -1,9 +1,9 @@
 <odoo>
   <data>
     <!-- custom.school tree view -->
-    <record id="custom_school_category_view_tree" model="ir.ui.view">
-      <field name="name">custom.school.category.view.tree</field>
-      <field name="model">custom.school.category</field>
+    <record id="custom_school_course_category_view_tree" model="ir.ui.view">
+      <field name="name">custom.school.course.category.view.tree</field>
+      <field name="model">custom.school.course.category</field>
       <field name="arch" type="xml">
         <tree>
           <!-- Add your fields here -->
@@ -14,10 +14,10 @@
       </field>
     </record>
 
-    <!-- custom_school course category search view -->
-    <record id="custom.school_category_view_search" model="ir.ui.view">
-      <field name="name">custom.school.category.view.search</field>
-      <field name="model">custom.school.category</field>
+    <!-- custom_school_course category search view -->
+    <record id="custom_school_category_view_search" model="ir.ui.view">
+      <field name="name">custom.school.course.category.view.search</field>
+      <field name="model">custom.school.course.category</field>
       <field name="arch" type="xml">
         <search string="Search Course Category">
           <!-- Add your fields here -->
@@ -28,9 +28,9 @@
     </record>
 
     <!-- custom.school form view -->
-    <record id="custom_school_view_form" model="ir.ui.view">
-      <field name="name">custom.school.view.form</field>
-      <field name="model">custom.school</field>
+    <record id="custom_school_course_category_view_form" model="ir.ui.view">
+      <field name="name">custom.school.course.category.view.form</field>
+      <field name="model">custom.school.course.category</field>
       <field name="arch" type="xml">
         <form string="">
           <sheet>
@@ -57,15 +57,15 @@
 
 
     <!-- custom.school action window -->
-    <record id="custom_school_action" model="ir.actions.act_window">
-      <field name="name">Course Category</field>
+    <record id="custom_school_course_category_action" model="ir.actions.act_window">
+      <field name="name">Course Categories</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">custom.school</field>
+      <field name="res_model">custom.school.course.category</field>
       <field name="view_mode">tree,form</field>
-      <field name="view_type">form</field>
-      <field name="domain">[]</field>
+      <!-- <field name="view_type">form</field> -->
+      <!-- <field name="domain">[]</field>
       <field name="context">{}</field>
-      <field name="target">{current}</field>
+      <field name="target">{current}</field> -->
       <field name="help" type="html">
         <p class="oe_view_nocontent_create">
           <!-- Add Text Here -->
@@ -78,6 +78,6 @@
     </record>
 
     <!-- This Menu Item must have a parent and an action -->
-    <menuitem id="custom_school_menu_act" name="Course Categories" parent="Data Master" action="custom_school_action" sequence="20"/>
+    <menuitem id="custom_school_course_category_menu_act" name="Course Categories" parent="custom_school_master_menu_categ" action="custom_school_course_category_action" sequence="20"/>
   </data>
 </odoo>
