@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import api, fields, models, exceptions
 
 class Session(models.Model):
     _name = 'custom.school.session'
@@ -42,6 +42,23 @@ class Session(models.Model):
                    'message': "Increase min participants or remove excess participants"
                },
            } 
+        
+    _sql_constains = [
+        ('name_unique',
+         'UNIQUE(name)',
+         "Session Name Should Be Unique")
+    ]
+
+    @api.constrains('teacher_id', 'participant_ids')
+    def _check_teacher_not_in_participants(self):
+        for record in self:
+            students = [r.student_id.id for r in record.participant_ids]
+            if record.teacher_id and record.teacher_id in students:
+                raise exceptions.ValidationError("Teacher can't be an Participant")
+            
+    def report_session(self):
+        print("odooooo")
+        return self.env.ref("custom_school.action_report_custom_school").report_action(self)
 
 
 class Participant(models.Model):

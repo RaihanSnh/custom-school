@@ -30,6 +30,7 @@ First Custom Module
         'views/res_partner.xml',
         
         'views/session_views.xml',
+        'reports/session_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

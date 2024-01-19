@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_custom_school" model="ir.actions.report">
+            <field name="name">Report Session</field>
+            <field name="model">custom.school.session</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">custom_school.report_custom_school</field>
+            <field name="report_file">custom_school.report_custom_school</field>
+            <field name="binding_model_id" eval="False"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_custom_school" name="report_custom_school">
+           <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h3 class="text-center">
+                                Session Report
+                                <br/>
+                                <small><span t-esc="doc.name"/></small>
+                            </h3>
+                            <p><b>Course :</b> <span t-field="doc.course_id"/></p>
+                            <p><b>Teacher :</b> <span t-field="doc.teacher_id"/></p>
+
+                            <table class="table table-bordered table-sm">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Reg Number</th>
+                                    <th>Student</th>
+                                </tr>
+                                <t t-set="no" t-value="1"/>
+                                <tr t-foreach="doc.participant_ids" t-as="ptcpn">
+                                    <td><span t-esc="no"/></td>
+                                    <td><span t-esc="ptcpn.name"/></td>
+                                    <td><span t-esc="ptcpn.student_id.name"/></td>
+                                    <t t-set="no" t-value="no+1"/>
+                                </tr>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

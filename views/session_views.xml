@@ -25,6 +25,9 @@
         <field name="model">custom.school.session</field>
         <field name="arch" type="xml">
             <form string="">
+                <header>
+                    <button string="Export PDF" type="object" class="oe_highlight" name="report_session" />
+                </header>
                 <sheet>
                     <group>
                         <group>
