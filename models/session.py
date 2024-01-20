@@ -16,6 +16,28 @@ class Session(models.Model):
     participant_ids = fields.One2many(comodel_name='custom.school.participant', inverse_name='session_id', string='Participant')
 
     taken_seats = fields.Float(compute='_compute_taken_seats', string='Taken Seats', store=True)
+
+    
+    status = fields.Selection(
+        string='Status',
+        selection=[('draft', 'Draft'), ('approve', 'Approve'), ('complete', 'Complete'), ('cancel', 'Cancel')],
+        readonly=True,
+        default='draft',
+        required=True
+    )
+
+    def action_approve(self):
+        self.write({'status':'approve'})
+
+    def action_complete(self):
+        self.write({'status':'complete'})
+
+    def action_cancel(self):
+        self.write({'status':'cancel'})
+
+    def action_reset(self):
+        self.write({'status':'draft'})
+    
     
     @api.depends('min_participant', 'participant_ids')
     def _compute_taken_seats(self):
@@ -59,6 +81,12 @@ class Session(models.Model):
     def report_session(self):
         print("odooooo")
         return self.env.ref("custom_school.action_report_custom_school").report_action(self)
+    
+    # deactivate multi delete function
+    def unlink(self):
+        if self.filtered(lambda line: line.state != 'draft'):
+            raise exceptions.UserError("You can only delete when the session status is still in draft!")
+        return super(Session, self).unlink()
 
 
 class Participant(models.Model):
